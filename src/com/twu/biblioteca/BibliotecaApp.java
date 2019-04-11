@@ -1,29 +1,52 @@
 package com.twu.biblioteca;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class BibliotecaApp {
-    private static BibliotecaApp biblioteca;
-    private final PrintStream out;
-    private BufferedReader in;
+    private ArrayList<Book> bookList;
+    //private final PrintStream out;
+    //private BufferedReader in;
 
-    public BibliotecaApp(BufferedReader in, PrintStream out) {
-        this.out = out;
-        this.in = in;
+    public BibliotecaApp(ArrayList<Book> listOfBooks){//, BufferedReader in, PrintStream out) {
+        this.bookList = listOfBooks;
+        //this.out = out;
+        //this.in = in;
     }
 
     public void start() {
         this.getWelcomeMessage();
+        if(bookList.isEmpty()){
+            System.out.println("There is not Books Available.");
+        } else {
+            System.out.println("Books Available:");
+            this.listBooks(bookList);
+        }
     }
 
     public void getWelcomeMessage() {
-        //System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!.");
+        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!.");
+    }
+
+    public void listBooks(ArrayList<Book> bookList) {
+        String output = "";
+        for (com.twu.biblioteca.Book book : bookList) {
+            output += book.getBookInfo() + "\n";
+        }
+        System.out.print(output);
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!.");
+        ArrayList<Book> bookList = new ArrayList();
+
+        bookList.add(new Book("Inferno"));
+        bookList.add(new Book("You'll Grow Out Of It"));
+        bookList.add(new Book("You Are A Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life"));
+        bookList.add(new Book("Learn Python 3 The Hard Way: A Very Simple"));
+
+        BibliotecaApp biblioteca = new BibliotecaApp(bookList);
+
+        biblioteca.start();
     }
 }
