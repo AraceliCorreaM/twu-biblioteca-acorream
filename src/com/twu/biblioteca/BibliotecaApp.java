@@ -40,10 +40,10 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         ArrayList<Book> bookList = new ArrayList();
 
-        bookList.add(new Book("Inferno"));
-        bookList.add(new Book("You'll Grow Out Of It"));
-        bookList.add(new Book("You Are A Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life"));
-        bookList.add(new Book("Learn Python 3 The Hard Way: A Very Simple"));
+        bookList.add(new Book("Inferno", "Dan Brown", 2014));
+        bookList.add(new Book("You'll Grow Out Of It", "Jessi Klein", 2016));
+        bookList.add(new Book("You Are A Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life", "Jen Sincero", 2013));
+        bookList.add(new Book("Learn Python 3 The Hard Way: A Very Simple", "Zed A. Shaw", 2017));
 
         BibliotecaApp biblioteca = new BibliotecaApp(bookList);
 
