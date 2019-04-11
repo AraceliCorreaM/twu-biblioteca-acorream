@@ -1,21 +1,21 @@
 package com.twu.biblioteca;
 
-import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BibliotecaApp {
 
     private ArrayList<Book> bookList;
     private final PrintStream out;
-    private Scanner scanner;
     private Boolean inputValid;
+    private BufferedReader in;
 
-    public BibliotecaApp(ArrayList<Book> listOfBooks, InputStream in, PrintStream out) {
+    public BibliotecaApp(ArrayList<Book> listOfBooks, BufferedReader in, PrintStream out) {
         this.bookList = listOfBooks;
         this.out = out;
-        this.scanner = new Scanner(in);
+        this.in = in;
         this.inputValid = true;
     }
 
@@ -36,9 +36,9 @@ public class BibliotecaApp {
         Integer input = 0;
         try {
             this.out.print("\nMenu selection: \n");
-            input = this.scanner.nextInt();
-        } catch (Exception e) {
-
+            input = Integer.parseInt(in.readLine());
+        }  catch (Exception e) {
+            this.out.println("Select a valid option!");
         }
         return input;
     }
@@ -54,7 +54,7 @@ public class BibliotecaApp {
     }
 
     public void quit(){
-        this.out.println("See you later");
+        this.out.println("Goodbye");
         this.inputValid = false;
     }
 
@@ -85,8 +85,7 @@ public class BibliotecaApp {
         bookList.add(new Book("You Are A Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life", "Jen Sincero", 2013));
         bookList.add(new Book("Learn Python 3 The Hard Way: A Very Simple", "Zed A. Shaw", 2017));
 
-        BibliotecaApp biblioteca = new BibliotecaApp(bookList, System.in, new PrintStream(System.out));
-
+        BibliotecaApp biblioteca = new BibliotecaApp(bookList, new BufferedReader(new InputStreamReader(System.in)), new PrintStream(System.out));
         biblioteca.start();
     }
 
