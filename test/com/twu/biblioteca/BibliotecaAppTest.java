@@ -16,6 +16,7 @@ import static org.mockito.Mockito.when;
 public class BibliotecaAppTest {
     private BibliotecaApp bibliotecaApp;
     private ArrayList<Book> bookList;
+    private ArrayList<User> userList;
     private Book Inferno;
     private BufferedReader in;
     private PrintStream out;
@@ -23,10 +24,11 @@ public class BibliotecaAppTest {
     @Before
     public void setUp(){
         bookList = new ArrayList();
+        userList = new ArrayList();
         in = mock(BufferedReader.class);
         out = mock(PrintStream.class);
         Inferno = mock(Book.class);
-        bibliotecaApp = new BibliotecaApp(bookList, in, out);
+        bibliotecaApp = new BibliotecaApp(bookList, userList, in, out);
     }
 
     @Test
