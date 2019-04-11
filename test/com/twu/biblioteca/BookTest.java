@@ -10,7 +10,7 @@ public class BookTest {
 
     @Before
     public void setUp() {
-        book = new Book("Inferno", "Dan Brown", 2014);
+        book = new Book(1,"Inferno", "Dan Brown", 2014);
     }
 
     @Test
