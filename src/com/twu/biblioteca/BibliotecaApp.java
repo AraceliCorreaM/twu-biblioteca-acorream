@@ -9,15 +9,17 @@ public class BibliotecaApp {
 
     private ArrayList<Book> bookList;
     private ArrayList<Movie> movieList;
+    private ArrayList<User> userList;
     private final PrintStream out;
     private BufferedReader in;
     private Boolean inputValid;
     private String userNow;
 
-    public BibliotecaApp(ArrayList<Book> listOfBooks, ArrayList<Movie> listOfMovies, BufferedReader in, PrintStream out) {
+    public BibliotecaApp(ArrayList<Book> listOfBooks, ArrayList<Movie> listOfMovies, ArrayList<User> listOfUsers, BufferedReader in, PrintStream out) {
 
         this.bookList = listOfBooks;
         this.movieList = listOfMovies;
+        this.userList = listOfUsers;
         this.out = out;
         this.in = in;
         this.inputValid = true;
@@ -29,7 +31,7 @@ public class BibliotecaApp {
     }
 
     public void quit(){
-        this.out.println("See you next time!");
+        this.out.println("Goodbye!");
         this.inputValid = false;
     }
 
@@ -40,10 +42,12 @@ public class BibliotecaApp {
 
     public void showMenuOptions() {
         this.out.println("Menu Options:");
-        this.out.println("Enter [1] to show all books");
-        this.out.println("Enter [2] to checkout book");
-        this.out.println("Enter [3] to show all movies");
-        this.out.println("Enter [0] to quit the system");
+        this.out.println("Enter [1] to show all Books");
+        this.out.println("Enter [2] to checkout Book");
+        this.out.println("Enter [3] to checkout Movies");
+        this.out.println("Enter [4] to show all Movies");
+        this.out.println("Enter [5] to checkout Movies");
+        this.out.println("Enter [0] to quit the System");
         this.respondToUserInput();
     }
 
@@ -65,8 +69,15 @@ public class BibliotecaApp {
                 this.checkoutBook();
                 break;
             case 3:
+                this.returnBook();
+                break;
+            case 4:
                 this.listMovies();
                 break;
+            case 5:
+                this.checkoutMovie();
+                break;
+
             default:
                 this.out.println("Select a valid option!");
         }
@@ -118,6 +129,25 @@ public class BibliotecaApp {
 
             if(!checkStatus){
                 this.out.println("\nThat book is not available.");
+            }
+        }
+    }
+
+    public void returnBook(){
+        if(this.userNow != ""){
+            String title = this.getBookTitle();
+            boolean checkStatus = false;
+            for (Book book : this.bookList){
+                if(book.getTitle().equals(title) && book.getBorrower() != ""){
+                    checkStatus = true;
+                    book.setBorrower("");
+                    this.out.println("\nThank you for returning the book.");
+                    break;
+                }
+            }
+
+            if(!checkStatus){
+                this.out.println("\nThat is not a valid book to return.");
             }
         }
     }

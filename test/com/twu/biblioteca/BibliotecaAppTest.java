@@ -17,6 +17,7 @@ public class BibliotecaAppTest {
     private BibliotecaApp bibliotecaApp;
     private ArrayList<Book> bookList;
     private ArrayList<Movie> movieList;
+    private ArrayList<User> userList;
     private Book Inferno;
     private BufferedReader in;
     private PrintStream out;
@@ -25,10 +26,11 @@ public class BibliotecaAppTest {
     public void setUp(){
         bookList = new ArrayList();
         movieList = new ArrayList();
+        userList = new ArrayList();
         in = mock(BufferedReader.class);
         out = mock(PrintStream.class);
         Inferno = mock(Book.class);
-        bibliotecaApp = new BibliotecaApp(bookList, movieList, in, out);
+        bibliotecaApp = new BibliotecaApp(bookList, movieList, userList, in, out);
     }
 
     @Test
@@ -40,7 +42,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldShowMenuOptionsWhenMenuIsShow(){
         bibliotecaApp.start();
-        verify(out).println(contains("Enter [1] to show all books"));
+        verify(out).println(contains("Enter [1] to show all Books"));
     }
 
     @Test
@@ -59,8 +61,8 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void shouldReportErroWhenInputIsNotInteger() throws IOException{
-        when(in.readLine()).thenReturn("XXXXXX").thenReturn("1");
+    public void shouldReportErrorWhenInputIsNotInteger() throws IOException{
+        when(in.readLine()).thenReturn("x").thenReturn("1");
         bookList.add(Inferno);
         bibliotecaApp.start();
         verify(out).println(contains("Select a valid option!"));
