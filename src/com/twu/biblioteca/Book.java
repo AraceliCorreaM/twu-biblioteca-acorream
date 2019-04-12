@@ -15,7 +15,7 @@ public class Book {
         this.borrower = "";
     }
 
-    public String getTitle(){
+    public String getBookTitle(){
         return this.title;
     }
 

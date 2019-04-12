@@ -16,7 +16,7 @@ public class UserTest {
 
     @Test
     public void shouldGetId() {
-        assertEquals("321-7654", user.getId());
+        assertEquals("321-7654", user.getUserId());
     }
 
     @Test

@@ -16,7 +16,7 @@ public class User {
         this.phone = phone;
     }
 
-    public String getId(){
+    public String getUserId(){
         return this.id;
     }
 

@@ -18,18 +18,22 @@ public class Movie {
     }
 
     public String getMovieName(){
+
         return this.name;
     }
 
     public String getBorrower(){
+
         return this.borrower;
     }
 
     public String getMovieInfo() {
+
         return String.format("%-30s | %-30s | %d | %d", name, director, year, rating);
     }
 
     public void setBorrower(String borrower){
+
         this.borrower = borrower;
     }
 

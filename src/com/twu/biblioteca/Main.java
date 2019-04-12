@@ -17,7 +17,7 @@ public class Main {
         bookList.add(new Book(4,"Learn Python 3 The Hard Way: A Very Simple", "Person", 2012));
 
         movieList.add(new Movie("1","Harry Potter and the Philosopher's Stone", "Chris Columbu", 2001, 9));
-        movieList.add(new Movie("1","The beauty and the beast", " Gary Trousdale", 1991, 2));
+        movieList.add(new Movie("2","The beauty and the beast", " Gary Trousdale", 1991, 2));
 
         userList.add(new User("321-7654","Harry Potter and the Philosopher's Stone", "rain4$.", "acorream@gmail.com","912345678"));
 
