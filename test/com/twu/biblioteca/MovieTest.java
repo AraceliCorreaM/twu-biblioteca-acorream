@@ -10,12 +10,12 @@ public class MovieTest {
 
     @Before
     public void setUp() {
-        movie = new Movie("1","Harry Potter", "sdsd", 2007, 9);
+        movie = new Movie("1","Harry Potter and the Philosopher's Stone", "Chris Columbus", 2001, 9);
     }
 
     @Test
     public void shouldGetMoiveName() {
-        assertEquals("Transformers", movie.getMovieName());
+        assertEquals("Harry Potter and the Philosopher's Stone", movie.getMovieName());
     }
 
     @Test
@@ -25,7 +25,7 @@ public class MovieTest {
 
     @Test
     public void shouldGetMovieInfoInFormat()  {
-        assertEquals(String.format("%-30s | %-20s | %d | %d", "Transformers", "Michael Benjamin Bay ", 2007, 9), movie.getMovieInfo());
+        assertEquals(String.format("%-30s | %-30s | %d | %d", "Harry Potter and the Philosopher's Stone", "Chris Columbus", 2001, 9), movie.getMovieInfo());
     }
 
     @Test
