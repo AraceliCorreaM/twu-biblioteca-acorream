@@ -8,14 +8,16 @@ import java.util.ArrayList;
 public class BibliotecaApp {
 
     private ArrayList<Book> bookList;
+    private ArrayList<Movie> movieList;
     private final PrintStream out;
     private BufferedReader in;
     private Boolean inputValid;
     private String userNow;
 
-    public BibliotecaApp(ArrayList<Book> listOfBooks, BufferedReader in, PrintStream out) {
+    public BibliotecaApp(ArrayList<Book> listOfBooks, ArrayList<Movie> listOfMovies, BufferedReader in, PrintStream out) {
 
         this.bookList = listOfBooks;
+        this.movieList = listOfMovies;
         this.out = out;
         this.in = in;
         this.inputValid = true;
@@ -32,7 +34,7 @@ public class BibliotecaApp {
     }
 
     public void getWelcomeMessage(){
-        this.out.println("Welcome To The Biblioteca Library System!");
+        this.out.println("Welcome to Biblioteca System. Your one-stop-shop for great book titles in Bangalore!.");
         this.showMenuOptions();
     }
 
@@ -40,6 +42,7 @@ public class BibliotecaApp {
         this.out.println("Menu Options:");
         this.out.println("Enter [1] to show all books");
         this.out.println("Enter [2] to checkout book");
+        this.out.println("Enter [3] to show all movies");
         this.out.println("Enter [0] to quit the system");
         this.respondToUserInput();
     }
@@ -60,6 +63,9 @@ public class BibliotecaApp {
                 break;
             case 2:
                 this.checkoutBook();
+                break;
+            case 3:
+                this.listMovies();
                 break;
             default:
                 this.out.println("Select a valid option!");
@@ -87,6 +93,16 @@ public class BibliotecaApp {
         this.out.print(output);
     }
 
+    public void listMovies(){
+        String output = "";
+        for (Movie movie : this.movieList){
+            if( movie.getBorrower() == "") {
+                output += movie.getMovieInfo() + "\n";
+            }
+        }
+        this.out.print(output);
+    }
+
     public void checkoutBook(){
         if(this.userNow != ""){
             String title = this.getBookTitle();
@@ -106,8 +122,10 @@ public class BibliotecaApp {
         }
     }
 
+
+
     public String getBookTitle(){
-        this.out.print("\nThe book name: \n");
+        this.out.print("\nThe book title: \n");
         String title = "";
         try {
             title = in.readLine();
@@ -115,5 +133,16 @@ public class BibliotecaApp {
             e.printStackTrace();
         }
         return title;
+    }
+
+    public String getMovieName(){
+        this.out.print("\nThe movie name: \n");
+        String name = "";
+        try {
+            name = in.readLine();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return name;
     }
 }
