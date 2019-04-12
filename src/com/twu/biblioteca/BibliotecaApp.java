@@ -122,7 +122,24 @@ public class BibliotecaApp {
         }
     }
 
+    public void checkoutMovie(){
+        if(this.userNow != ""){
+            String name = this.getMovieName();
+            boolean checkStatus = false;
+            for (Book book : this.bookList){
+                if(book.getTitle().equals(name) && book.getBorrower() == ""){
+                    checkStatus = true;
+                    book.setBorrower(this.userNow);
+                    this.out.println("\nThank you! Enjoy the book");
+                    break;
+                }
+            }
 
+            if(!checkStatus){
+                this.out.println("\nThat book is not available.");
+            }
+        }
+    }
 
     public String getBookTitle(){
         this.out.print("\nThe book title: \n");
